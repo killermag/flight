@@ -1,0 +1,24 @@
+<% provinces = {} %> 
+<% months = {} %> 
+<% jours = {} %> 
+
+<% @flies.each do |flight| %> 
+  <% a = flight.departure_date %> 
+  <% provinces[flight.from.name] = flight.from.name %> 
+  <% provinces[flight.to.name] = flight.to.name %> 
+  <% months[Date::MONTHNAMES[a.month]] = a.month %> 
+  <% jours[a.day] = a.day %> 
+<% end %> 
+
+<%= form_with model: @fly, method: :get  do |f| %> 
+  <%= f.select :from, provinces %> 
+  <%= f.select :to, provinces %> 
+
+  <%= f.select "year", [DateTime.now.year] %> 
+  <%= f.select :month, months %> 
+  <%= f.select :day , jours %> 
+
+  <%= f.select :passenger_count, [1,2,3,4] %> 
+
+  <%= f.submit "Search" %>
+<% end %> 

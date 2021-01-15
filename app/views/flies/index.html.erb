@@ -1,0 +1,11 @@
+<%= render 'search_form' %> 
+<br>
+
+<% if @flights.present? %> 
+  <% @flights.each do |flight| %> 
+    <%= flight.from %> 
+    <%= flight.to %> 
+    <br>
+    
+  <% end %> 
+<% end %> 

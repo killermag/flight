@@ -40,7 +40,7 @@ end
 
 #----------------------------------------------------------
 
-rand(5..10).times do 
+rand(1000).times do 
   locales = airports 
   Fly.create from: locales[:from], to: locales[:to], duration: duration, departure_date: date 
 end

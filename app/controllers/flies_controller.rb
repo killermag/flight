@@ -4,11 +4,13 @@ class FliesController < ApplicationController
     @fly = Fly.new 
 
     if params[:fly].present? 
+      from = Airport.where "name = ?", params[:fly][:from]
+      to = Airport.where "name = ?", params[:fly][:to]
       a = params[:fly]
       a[:month] = "0#{a[:month]}" if a[:month].to_i < 10
       a[:day] = "0#{a[:day]}" if a[:day].to_i < 10 
       date = "%#{a[:year]}-#{a[:month]}-#{a[:day]}%"
-      @flights = Fly.where "departure_date LIKE ?", date
+      @flights = Fly.where(from: from, to: to).where("departure_date LIKE ?", date)
 
     end 
 

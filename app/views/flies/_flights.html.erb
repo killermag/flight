@@ -1,0 +1,37 @@
+<div class="wrapper">
+    <% if @flights.present? %>
+        <% @flights.each do |f| %>
+
+        <div class="resultcontainer">
+            <div class="banner"></div>
+
+            <div class="content">
+
+                <%= hidden_field :fly, :id, value: f.id %>
+
+                <%= hidden_field :fly, :passenger_count, value: params[:fly][:passenger_count] %>
+
+
+
+                <strong class="flightInfo"><%= f.from.name %></strong> To
+                <strong class="flightInfo"><%= f.to.name %></strong>
+                <br>
+
+                <strong class="flightInfo">duration  </strong><%= f.duration %>
+                <br>
+
+                <strong class="flightInfo">Passengers</strong> <%= params[:fly][:passenger_count] %>
+
+                <br>
+                <a href="<%= new_booking_path %>">
+                    <button class="commit_button BookButton">Book</button> 
+                </a>
+
+
+            </div>
+        </div>
+
+        <% end %>
+    <% end %>
+
+</div>

@@ -10,15 +10,29 @@
   <% jours[a.day] = a.day %> 
 <% end %> 
 
-<%= form_with model: @fly, method: :get  do |f| %> 
-  <%= f.select :from, provinces %> 
-  <%= f.select :to, provinces %> 
 
-  <%= f.select "year", [DateTime.now.year] %> 
-  <%= f.select :month, months %> 
-  <%= f.select :day , jours %> 
 
-  <%= f.select :passenger_count, [1,2,3,4] %> 
+<div class="container">
+  <%= form_with model: @fly, method: :get, id: "searchForm"  do |f| %> 
+    <div class="from_to">
+    <%= f.select :from, provinces, class: 'form-input' %> 
+    <%= f.label :to, class: "label" %>
+    <%= f.select :to, provinces, class: 'form-input'  %> 
+    </div>
 
-  <%= f.submit "Search" %>
-<% end %> 
+    <br>
+    <br>
+
+    <div class="when">
+      <%= f.label :date, class: "label"  %>
+      <%= f.select "year", [DateTime.now.year], class: 'form-input'   %> 
+      <%= f.select :month, months, class: 'form-input'   %> 
+      <%= f.select :day , jours, class: 'form-input'   %> 
+
+      <%= f.label :passenger_count, "Passengers", class: "label"   %>
+      <%= f.select :passenger_count, [1,2,3,4], class: 'form-input'   %> 
+
+      <%= f.submit "Find", class: "commit_button" %>
+    </div>
+  <% end %> 
+</div>

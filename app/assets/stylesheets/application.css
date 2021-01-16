@@ -14,12 +14,3 @@
  *= require_self
  */
 
-
-.navbar {
-  background-color: black;
-  height: 20px;
-  margin: 0; 
-  padding: 0; 
-  border: initial;
-
-}

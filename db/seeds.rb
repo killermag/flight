@@ -1,8 +1,3 @@
-Airport.destroy_all 
-ActiveRecord::Base.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0     WHERE NAME='airports';")
-
-Fly.destroy_all 
-ActiveRecord::Base.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0     WHERE NAME='flies';")
 
 provinces = [ { name: 'Alberta', code: 'AB' },
               { name: 'British Columbia', code: 'BC' },

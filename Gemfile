@@ -32,6 +32,9 @@ gem 'table_print'
 
 gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
 
+gem "letter_opener", :group => :development
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

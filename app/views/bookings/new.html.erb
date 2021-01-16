@@ -1,0 +1,35 @@
+<% if alert %>
+    <%= alert %>
+<% end %>
+<% count = params[:booking][:passenger_count].to_i %> 
+
+
+<div class="bookWrapper">
+<%= form_with model: @booking do |b| %>
+    <%= b.hidden_field :flight_id, value: params[:booking][:flight_id] %>
+    <%= b.hidden_field :passenger_count, value: params[:booking][:passenger_count] %>
+
+    <% @passengers.each_with_index do |passenger, index| %>
+        <%= b.fields_for passenger do |p| %>
+            <div class="passenger-info">
+                <%= p.label :first_name, class: 'label' %>
+                <%= p.text_field :first_name, class: 'passenger-credentials', name: "booking[passenger][first_name][]"  %>
+
+                <%= p.label :last_name, class: 'label' %>
+                <%= p.text_field :last_name, name: 'booking[passenger][last_name][]', class: 'passenger-credentials'  %>
+
+            </div>
+            <% if index == @passengers.length - 1 %>
+                <div class="email-wrapper">
+                    <%= p.label :email, class: 'label' %>
+                    <%= p.email_field :email , class: 'passenger-credentials email' %>
+                </div>
+            <% end %>
+        <% end %>
+    <% end %>
+
+
+<%= b.submit "Book Flight", class: 'commit_button FinaliseButton' %>
+<% end %>
+
+</div>

@@ -131,3 +131,33 @@ body {
 .content {
     margin-left: 7px;
 }
+
+
+.FinaliseButton {
+    width: fit-content;
+    background-color: rgba(202, 202, 202, 0.685);
+}
+
+.passenger-credentials {
+    border: solid 0.5px;
+    border-radius: 3px;
+    border-color: rgb(211, 211, 211);
+    height: 1.5rem;
+}
+
+.bookWrapper {
+    display: grid;
+    grid-template-columns: 30rem;
+    justify-content: center;
+    margin-top: 10rem;
+}
+
+.email-wrapper {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.email {
+    margin-left: 2.5rem;
+    width: 18rem;
+}

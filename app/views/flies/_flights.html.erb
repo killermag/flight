@@ -7,26 +7,25 @@
 
             <div class="content">
 
-                <%= hidden_field :fly, :id, value: f.id %>
+                <%= form_with model: Booking.new, method: :get, url: new_booking_path do |form| %>
 
-                <%= hidden_field :fly, :passenger_count, value: params[:fly][:passenger_count] %>
+                    <!--  Fields That need to be submitted to Booking -->
+                    <%= form.hidden_field :flight_id, value: f.id%>
+                    <%= form.hidden_field :passenger_count, value: params[:fly][:passenger_count] %>
 
+                    <strong class="flightInfo"><%= f.from.name %></strong> To
+                    <strong class="flightInfo"><%= f.to.name %></strong>
+                    <br>
 
+                    <strong class="flightInfo">duration  </strong><%= f.duration %>
+                    <br>
 
-                <strong class="flightInfo"><%= f.from.name %></strong> To
-                <strong class="flightInfo"><%= f.to.name %></strong>
-                <br>
+                    <strong class="flightInfo">Passengers</strong> <%= params[:fly][:passenger_count] %>
+                    <br>
 
-                <strong class="flightInfo">duration  </strong><%= f.duration %>
-                <br>
+                    <%= form.submit "Book", class: 'commit_button BookButton' %>
 
-                <strong class="flightInfo">Passengers</strong> <%= params[:fly][:passenger_count] %>
-
-                <br>
-                <a href="<%= new_booking_path %>">
-                    <button class="commit_button BookButton">Book</button> 
-                </a>
-
+                <% end %>
 
             </div>
         </div>

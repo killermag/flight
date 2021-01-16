@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thank you for choosing to fly with us, Here is the information regarding your recent purchase with us</h1>
+
+    <% amount = @passengers.length %> 
+    <% "#{amount} ticket" if amount < 2 %> 
+    <% "#{amount} tickets" if amount > 1 %> 
+
+    <h1>Passenger information</h1>
+    <% @passengers.each do |passenger| %> 
+      <%= passenger.first_name + " " + passenger.last_name %> 
+      <br>
+    <% end %> 
+
+    <h1>Flight information</h1>
+    Booking no. #<%= @passengers[0].bookings.where(fly: @fly ).pluck :id %> <br> 
+    Fly no. #<%= @fly.id %><br>      
+    <%= @fly.from.name %> To <%= @fly.to.name %> <br> 
+    Departure date: <%= @fly.departure_date %> <br> 
+    duration <%= @fly.duration %> <br> 
+
+
+  </body>
+</html>

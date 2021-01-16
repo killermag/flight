@@ -24,6 +24,7 @@ class BookingsController < ApplicationController
         end 
 
         if bool 
+            PassengerMailer.with(passengers: @passengers, fly: @fly).welcome_email.deliver_now
             redirect_to flies_path
         else 
             flash.now[:alert] = "There was an error, please try again later"

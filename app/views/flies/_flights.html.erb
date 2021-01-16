@@ -1,6 +1,5 @@
 <div class="wrapper">
-  <% if @flights %> 
-    <% if @flights.present? %>
+    <% if @flights && !@flights.empty? %>
         <% @flights.each do |f| %>
 
         <div class="resultcontainer">
@@ -35,4 +34,3 @@
     <% end %>
 
 </div>
-  <% end %> 

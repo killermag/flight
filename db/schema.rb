@@ -12,14 +12,17 @@
 
 ActiveRecord::Schema.define(version: 2021_01_14_044116) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "airports", force: :cascade do |t|
     t.string "name"
     t.string "code"
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.integer "passenger_id", null: false
-    t.integer "fly_id", null: false
+    t.bigint "passenger_id", null: false
+    t.bigint "fly_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["fly_id"], name: "index_bookings_on_fly_id"
@@ -27,8 +30,8 @@ ActiveRecord::Schema.define(version: 2021_01_14_044116) do
   end
 
   create_table "flies", force: :cascade do |t|
-    t.integer "from_id"
-    t.integer "to_id"
+    t.bigint "from_id"
+    t.bigint "to_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "departure_date"
@@ -36,15 +39,6 @@ ActiveRecord::Schema.define(version: 2021_01_14_044116) do
     t.string "duration"
     t.index ["from_id"], name: "index_flies_on_from_id"
     t.index ["to_id"], name: "index_flies_on_to_id"
-  end
-
-  create_table "odinflights", force: :cascade do |t|
-    t.integer "from_id", null: false
-    t.integer "to_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["from_id"], name: "index_odinflights_on_from_id"
-    t.index ["to_id"], name: "index_odinflights_on_to_id"
   end
 
   create_table "passengers", force: :cascade do |t|
@@ -57,6 +51,4 @@ ActiveRecord::Schema.define(version: 2021_01_14_044116) do
 
   add_foreign_key "bookings", "flies"
   add_foreign_key "bookings", "passengers"
-  add_foreign_key "odinflights", "froms"
-  add_foreign_key "odinflights", "tos"
 end

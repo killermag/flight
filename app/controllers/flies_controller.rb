@@ -10,7 +10,7 @@ class FliesController < ApplicationController
       a[:month] = "0#{a[:month]}" if a[:month].to_i < 10
       a[:day] = "0#{a[:day]}" if a[:day].to_i < 10 
       date = "%#{a[:year]}-#{a[:month]}-#{a[:day]}%"
-      @flights = Fly.where(from: from, to: to).where("departure_date LIKE ?", date)
+      @flights = Fly.where("from_id = ? AND to_id = ? AND departure_date::date = ?", from ,to ,date )
 
     end 
 

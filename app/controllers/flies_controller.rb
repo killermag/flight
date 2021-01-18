@@ -4,8 +4,8 @@ class FliesController < ApplicationController
     @fly = Fly.new 
 
     if params[:fly].present? 
-      from = Airport.where "name = ?", params[:fly][:from]
-      to = Airport.where "name = ?", params[:fly][:to]
+      from = Airport.find_by "name = ?", params[:fly][:from]
+      to = Airport.find_by "name = ?", params[:fly][:to]
       a = params[:fly]
       a[:month] = "0#{a[:month]}" if a[:month].to_i < 10
       a[:day] = "0#{a[:day]}" if a[:day].to_i < 10 
